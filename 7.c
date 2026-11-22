@@ -66,6 +66,10 @@ void uppercase(char *text) {
 
 /* Convert string to enum */
 CommandType get_command(const char *input) {
+    if (input == NULL) {
+        return UNKNOWN;
+    }
+
     char command[100];
 
     if (strlen(input) >= sizeof(command)) {

@@ -91,7 +91,8 @@ int read_gpa(float *gpa) {
     }
 
     if (input == end || *end != '\0' ||
-        errno == ERANGE || value < 0.0 || value > 4.0) {
+        errno == ERANGE || !isfinite(value) ||
+        value < 0.0 || value > 4.0) {
         printf("Invalid GPA.\n");
         return 0;
     }
@@ -101,7 +102,7 @@ int read_gpa(float *gpa) {
 }
 
 /* Search for a student using roll number */
-int find_student(Student students[], int count, int roll) {
+int find_student(const Student students[], int count, int roll) {
     for (int i = 0; i < count; i++) {
         if (students[i].roll_no == roll) {
             return i;
@@ -225,7 +226,7 @@ void search_student(const Student students[], int count) {
         return;
     }
 
-    int index = find_student((Student *)students, count, roll);
+    int index = find_student(students, count, roll);
 
     if (index == -1) {
         printf("Student not found.\n");

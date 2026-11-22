@@ -69,12 +69,20 @@ void memory_analysis(void) {
 
 /* Set integer value */
 void set_integer(TypedRecord *record, int value) {
+    if (record == NULL) {
+        return;
+    }
+
     record->data.integer = value;
     record->type = VALUE_INT;
 }
 
 /* Set float value */
 void set_float(TypedRecord *record, float value) {
+    if (record == NULL) {
+        return;
+    }
+
     record->data.decimal = value;
     record->type = VALUE_FLOAT;
 }

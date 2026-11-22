@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 typedef enum {
     TYPE_EMPTY,
@@ -96,7 +97,7 @@ int container_set_string(Container *c, const char *value) {
 
     size_t length = strlen(value);
 
-    if (length == (size_t)-1) {
+    if (length == SIZE_MAX) {
         return 0;
     }
 
@@ -377,7 +378,6 @@ int main(void) {
         container_clear(&records[i]);
     }
 
-    container_clear(&copied_record);
     container_clear(&copied_record);
 
     free(records);
